@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+
+        .testimonial-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .section-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .section-subheading {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .testimonials-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 350px;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .author-title {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 768px) {
+            .section-heading {
+                font-size: 2.2rem;
+            }
+
+            .section-subheading {
+                font-size: 1rem;
+            }
+
+            .testimonial-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="testimonial-section">
+        <h2 class="section-heading">Voices of Satisfaction</h2>
+        <p class="section-subheading">It's not just a wear, it is a feeling. Feel it.</p>
+
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <p class="testimonial-content">"The quality and craftsmanship of my MUSMAD Stitches attire are unparalleled. It's more than clothing; it's a statement of cultural pride and modern elegance."</p>
+                <div class="testimonial-author">
+                    <img src="https://i.pravatar.cc/150?img=33" alt="Adebayo Ogunlesi" class="author-image">
+                    <div class="author-info">
+                        <span class="author-name">Adebayo Ogunlesi</span>
+                        <span class="author-title">Business Executive</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-content">"Every time I wear a piece from the Glims collection, I feel confident and stylish. MUSMAD truly understands the blend of tradition and contemporary fashion."</p>
+                <div class="testimonial-author">
+                    <img src="https://i.pravatar.cc/150?img=23" alt="Chioma Eze" class="author-image">
+                    <div class="author-info">
+                        <span class="author-name">Chioma Eze</span>
+                        <span class="author-title">Fashion Influencer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-content">"The attention to detail in MUSMAD's traditional wear is exceptional. It's a perfect choice for those who appreciate authentic cultural designs with a modern twist."</p>
+                <div class="testimonial-author">
+                    <img src="https://i.pravatar.cc/150?img=53" alt="Oluwaseun Afolabi" class="author-image">
+                    <div class="author-info">
+                        <span class="author-name">Oluwaseun Afolabi</span>
+                        <span class="author-title">Cultural Enthusiast</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
