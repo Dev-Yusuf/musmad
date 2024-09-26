@@ -257,37 +257,35 @@
           <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
     
 
-
-
-
-
-
-
-
-
-
 <script>
     AOS.init();
 </script>
 <script>
-    const nav = document.querySelector('nav');
-    const hero = document.querySelector('.hero');
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
+const nav = document.querySelector('nav');
+const hero = document.querySelector('.hero');
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > hero.offsetHeight - nav.offsetHeight) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
+window.addEventListener('scroll', () => {
+    if (window.scrollY > hero.offsetHeight - nav.offsetHeight) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+});
+
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+    hamburger.classList.toggle('active');
+});
+
+// Close menu when a link is clicked
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+        hamburger.classList.remove('active');
     });
-
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
-    });
-
-    
+});
 </script>
 </body>
 </html>
