@@ -13,15 +13,69 @@
     <title>Musmad Stitches - Official</title>
     <script type="application/ld+json">
         {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "url": "https://musmadstitches.com",
-          "logo": "https://musmadstitches.com/assets/img/musmad_logo.png"
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "https://musmadstitches.com",
+            "logo": "https://musmadstitches.com/assets/img/musmad_logo.png"
         }
-        </script>
+    </script>
 </head>
 <body>
-    <div class="hero">
+
+    <div id="particles-js"></div>
+    <div class="content">
+        <div class="logo">
+            <img src="./assets/img/musmad_logo.png" alt="Musmad Logo">
+        </div>
+        <h1>Musmadstitches</h1>
+        <p>Thank you for visiting Musmadstitches, Our technical team are seriously
+            working hard to serve you better and increase your online shopping experience with us.
+            Meanwhile you can reach out to us on:</p>
+        <div class="social-icons">
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
+    <div class="copyright">Musmadstitches 2024. All rights reserved.</div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Particles.js configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#a3b18a' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: false, anim: { enable: false } },
+                size: { value: 3, random: true, anim: { enable: false } },
+                line_linked: { enable: true, distance: 150, color: '#a3b18a', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        // GSAP animations
+        gsap.from('.logo', { duration: 1, scale: 0, ease: 'back.out(1.7)' });
+        gsap.to('h1', { duration: 1, opacity: 1, y: 0, delay: 0.5, ease: 'power2.out' });
+        gsap.to('p', { duration: 1, opacity: 1, y: 0, delay: 0.7, ease: 'power2.out' });
+        gsap.to('.social-icons', { duration: 1, opacity: 1, y: 0, delay: 0.9, ease: 'power2.out' });
+    </script>
+
+
+
+<!---
+ <div class="hero">
         <video class="video-bg" autoplay loop muted playsinline>
             <source src="./assets/img/musmad.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -111,7 +165,7 @@
     </div>
     
         <section class="collection-section">
-            <h2>Our Latest Collections</h2> <!-- Section heading -->
+            <h2>Our Latest Collections</h2> 
         
             <div class="collection-card">
                 <div class="image-container">
@@ -121,7 +175,7 @@
                         <p>Explore our premium native wear collection.</p>
                     </div>
                 </div>
-                <h3 class="collection-description-heading">Native Wear</h3> <!-- Description Heading -->
+                <h3 class="collection-description-heading">Native Wear</h3> 
                 <p class="collection-description">Step into the elegance of traditional craftsmanship with our Native Wear collection, designed to connect you with heritage.</p>
                 <a href="native_view.html" class="view-collection-btn">View Collection</a>
             </div>
@@ -134,7 +188,7 @@
                         <p>Discover timeless traditional designs.</p>
                     </div>
                 </div>
-                <h3 class="collection-description-heading">Traditional Wears</h3> <!-- Description Heading -->
+                <h3 class="collection-description-heading">Traditional Wears</h3> 
                 <p class="collection-description">Discover the timeless beauty of Traditional Wears, blending modern appeal with rich cultural heritage.</p>
                 <a href="#" class="view-collection-btn">View Collection</a>
             </div>
@@ -147,7 +201,7 @@
                         <p>Modern styles with a Musmad twist.</p>
                     </div>
                 </div>
-                <h3 class="collection-description-heading">Glims by Musmad</h3> <!-- Description Heading -->
+                <h3 class="collection-description-heading">Glims by Musmad</h3> 
                 <p class="collection-description">Explore Glims by Musmad – a fusion of modern fashion and elegance, crafted for the stylish you.</p>
                 <a href="#" class="view-collection-btn">View Collection</a>
             </div>
@@ -264,10 +318,17 @@
               </div>
             </div>
           </footer>
-          <script src="https://unpkg.com/scrollreveal"></script>
-          <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
-    
 
+        ----------------->
+   
+           <!-- FontAwesome Kit -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+            <script src="https://unpkg.com/scrollreveal"></script>
+            <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+    
+<!--
 <script>
     AOS.init();
 </script>
@@ -298,5 +359,6 @@ navLinks.querySelectorAll('a').forEach(link => {
     });
 });
 </script>
+-->
 </body>
 </html>

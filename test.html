@@ -1,89 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panels Animation</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musmad - Innovating the Future</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #344e41;
+            --color-secondary: #dad7cd;
+            --accent-color: #a3b18a;
+            --text-color: #ffffff;
+            --background-color: #0a0a0a;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            height: 100vh;
+            width: 100vw;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-family: 'GFS Didot', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .social-icons a {
+            color: var(--accent-color);
+            font-size: 1.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--color-secondary);
+            transform: scale(1.2);
+        }
+
+        .copyright {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .logo img {
+                width: 80px;
+            }
+
+            .social-icons a {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+
+            .logo img {
+                width: 60px;
+            }
+
+            .social-icons a {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <!-- FontAwesome Kit -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
+
 <body>
-  <div class="panel panel1">Section 1</div>
-  <div class="panel panel2">Section 2</div>
-  <div class="panel panel3">Section 3</div>
-  <div class="panel panel4">Section 4</div>
-  <script src="app.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <div id="particles-js"></div>
+    <div class="content">
+        <div class="logo">
+            <img src="./assets/img/musmad_logo.png" alt="Musmad Logo">
+        </div>
+        <h1>Musmadstitches</h1>
+        <p>Thank you for visiting Musmadstitches, Our technical team are seriously
+            working hard to serve you better and increase your online shopping experience with us.
+            Meanwhile you can reach out to us on:</p>
+        <div class="social-icons">
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
+    <div class="copyright">Musmadstitches 2024. All rights reserved.</div>
 
+    <script>
+        // Particles.js configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#a3b18a' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: false, anim: { enable: false } },
+                size: { value: 3, random: true, anim: { enable: false } },
+                line_linked: { enable: true, distance: 150, color: '#a3b18a', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        // GSAP animations
+        gsap.from('.logo', { duration: 1, scale: 0, ease: 'back.out(1.7)' });
+        gsap.to('h1', { duration: 1, opacity: 1, y: 0, delay: 0.5, ease: 'power2.out' });
+        gsap.to('p', { duration: 1, opacity: 1, y: 0, delay: 0.7, ease: 'power2.out' });
+        gsap.to('.social-icons', { duration: 1, opacity: 1, y: 0, delay: 0.9, ease: 'power2.out' });
+    </script>
 </body>
+
 </html>
-
-<style>
-    * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  scroll-behavior: smooth;
-  height: 100vh;
-}
-
-.panel {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  transition: all 0.5s ease;
-}
-
-.panel1 { background-color: #f06; }
-.panel2 { background-color: #09f; }
-.panel3 { background-color: #0f9; }
-.panel4 { background-color: #f90; }
-
-/* Adding sticky behavior */
-.panel {
-  position: sticky;
-  top: 0;
-}
-
-
-</style>
-
-<script>
-    // GSAP animations for scroll effect
-gsap.registerPlugin(ScrollTrigger);
-
-gsap.utils.toArray('.panel').forEach((panel, i) => {
-  ScrollTrigger.create({
-    trigger: panel,
-    start: "top top",
-    pin: true,
-    pinSpacing: false,
-    markers: false // Set true to see trigger points
-  });
-});
-
-</script>
-
-<script>
-    // Advanced animation on scroll
-gsap.to('.panel1', {
-  scrollTrigger: {
-    trigger: '.panel1',
-    start: 'top top',
-    scrub: true,
-  },
-  x: 300, // Slide panel 1 horizontally as you scroll
-  opacity: 0.5,
-});
-
-</script>
-
-<script>
-    
-</script>
