@@ -1,45 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/styles/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <title>Musmad Stitches - Official</title>
-</head>
-<body>
-    <div class="collection-banner">
-        <span class="collection-banner-text">Native Class</span>
-        <span class="collection-banner-text">Nation wide Delivery</span>
-    </div>
+// Initialize AOS library
+AOS.init();
 
-    <section class="collection-hero">
-        <div class="collection-hero-content">
-            <h1>Discover Your Style</h1>
-            <p>Explore our latest collection of trendsetting native fashion and tailored perfection.</p>
-            <a href="index.html" class="collection-cta-button">Home</a>
-        </div>
-    </section>
+// Navbar scroll effect and hamburger menu functionality
+const nav = document.querySelector('nav');
+const hero = document.querySelector('.hero');
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
 
-    <h2 class="section-title">New Season Arrivals</h2>
+window.addEventListener('scroll', () => {
+    if (window.scrollY > hero.offsetHeight - nav.offsetHeight) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+});
 
-    <div class="product-grid" id="product-grid">
-        <!-- Product items will be dynamically inserted here -->
-    </div>
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+    hamburger.classList.toggle('active');
+});
 
-    <div id="lightbox" class="lightbox">
-        <span class="close-lightbox">&times;</span>
-        <div class="lightbox-content">
-            <img id="lightbox-image" src="" alt="Product Image">
-            <div class="lightbox-nav">
-                <button id="prev-image"><i class="fas fa-chevron-left"></i></button>
-                <button id="next-image"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </div>
-    </div>
-<script>
+// Close menu when a link is clicked
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+        hamburger.classList.remove('active');
+    });
+});
 
+// Product Data for the native clothing section
+document.addEventListener('DOMContentLoaded', function() {
     const productData = [
         {
             id: 1,
@@ -63,6 +53,7 @@
         },
     ];
 
+    // Lightbox and product grid functionality
     const productGrid = document.getElementById('product-grid');
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
@@ -141,10 +132,33 @@
         }
     });
 
+    // Load products when the page is fully loaded
     loadProducts();
-</script>
-    <!-- Include your external JS file here, right before closing the body tag -->
-    <script src="./assets/js/appscripts.js" defer></script>
+});
 
-</body>
-</html>
+document.addEventListener('DOMContentLoaded', () => {
+    const services = document.querySelectorAll('.service');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    services.forEach(service => {
+        service.style.opacity = '0';
+        service.style.transform = 'translateY(30px)';
+        service.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(service);
+    });
+});

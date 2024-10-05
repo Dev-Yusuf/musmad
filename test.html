@@ -1,190 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Musmad - Innovating the Future</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-primary: #344e41;
-            --color-secondary: #dad7cd;
-            --accent-color: #a3b18a;
-            --text-color: #ffffff;
-            --background-color: #0a0a0a;
-        }
-
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            height: 100vh;
-            width: 100vw;
-            overflow-x: hidden;
-        }
-
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .logo img {
-            width: 100px;
-            height: auto;
-            margin-bottom: 2rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-family: 'GFS Didot', serif;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .social-icons a {
-            color: var(--accent-color);
-            font-size: 1.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: var(--color-secondary);
-            transform: scale(1.2);
-        }
-
-        .copyright {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            font-size: 0.8rem;
-            opacity: 0.7;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            p {
-                font-size: 1rem;
-            }
-
-            .logo img {
-                width: 80px;
-            }
-
-            .social-icons a {
-                font-size: 1.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            p {
-                font-size: 0.9rem;
-            }
-
-            .logo img {
-                width: 60px;
-            }
-
-            .social-icons a {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
-    <!-- FontAwesome Kit -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>Musmad Stitches - Official</title>
 </head>
-
 <body>
-    <div id="particles-js"></div>
-    <div class="content">
-        <div class="logo">
-            <img src="./assets/img/musmad_logo.png" alt="Musmad Logo">
+    <div class="collection-banner">
+        <span class="collection-banner-text">Native Class</span>
+        <span class="collection-banner-text">Nation wide Delivery</span>
+    </div>
+
+    <section class="collection-hero">
+        <div class="collection-hero-content">
+            <h1>Discover Your Style</h1>
+            <p>Explore our latest collection of trendsetting native fashion and tailored perfection.</p>
+            <a href="index.html" class="collection-cta-button">Home</a>
         </div>
-        <h1>Musmadstitches</h1>
-        <p>Thank you for visiting Musmadstitches, Our technical team are seriously
-            working hard to serve you better and increase your online shopping experience with us.
-            Meanwhile you can reach out to us on:</p>
-        <div class="social-icons">
-            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </section>
+
+    <h2 class="section-title">New Season Arrivals</h2>
+
+    <div class="product-grid" id="product-grid">
+        <!-- Product items will be dynamically inserted here -->
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-image" src="" alt="Product Image">
+            <div class="lightbox-nav">
+                <button id="prev-image"><i class="fas fa-chevron-left"></i></button>
+                <button id="next-image"><i class="fas fa-chevron-right"></i></button>
+            </div>
         </div>
     </div>
-    <div class="copyright">Musmadstitches 2024. All rights reserved.</div>
 
     <script>
-        // Particles.js configuration
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#a3b18a' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: false, anim: { enable: false } },
-                size: { value: 3, random: true, anim: { enable: false } },
-                line_linked: { enable: true, distance: 150, color: '#a3b18a', opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+        function getFullImageUrl(relativePath) {
+            const baseUrl = window.location.origin; // Gets the base URL of your website
+            return `${baseUrl}/${relativePath.replace(/^\.\//, '')}`;
+        }
+
+        const productData = [
+            {
+                id: 1,
+                title: "Elegant Agbada",
+                images: ["./assets/img/native3.jpg", "./assets/img/native4.jpg", "./assets/img/native5.jpg"],
+                price: { original: 150, discounted: 120 },
+                newArrival: true,
+                preOrder: false
             },
-            interactivity: {
-                detect_on: 'canvas',
-                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
-                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            {
+                id: 2,
+                title: "Classic Native Dress",
+                images: ["./assets/img/agba1.jpg", "./assets/img/agbada2.jpg", "./assets/img/agbada3.jpg"],
+                price: { original: 200, discounted: 180 },
+                newArrival: false,
+                preOrder: true
             },
-            retina_detect: true
+            {
+                id: 3,
+                title: "Royal Native Dress",
+                images: ["./assets/img/native_dress1.jpg", "./assets/img/native_dress2.jpg", "./assets/img/native_dress3.jpg"],
+                price: { original: 220, discounted: 190 },
+                newArrival: true,
+                preOrder: false
+            },
+            {
+                id: 4,
+                title: "Noble Traditional Wear",
+                images: ["./assets/img/native_dress1.jpg", "./assets/img/native_dress2.jpg", "./assets/img/native_dress3.jpg"],
+                price: { original: 250, discounted: 230 },
+                newArrival: false,
+                preOrder: true
+            },
+        ];
+
+        const productGrid = document.getElementById('product-grid');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const closeLightbox = document.querySelector('.close-lightbox');
+        let currentImageIndex = 0;
+        let currentProductImages = [];
+
+        // Function to display lightbox with selected image
+        function openLightbox(images, imageIndex) {
+            currentProductImages = images;
+            currentImageIndex = imageIndex;
+            lightboxImage.src = currentProductImages[currentImageIndex];
+            lightbox.style.display = 'flex';
+        }
+
+        // Close lightbox
+        closeLightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
         });
 
-        // GSAP animations
-        gsap.from('.logo', { duration: 1, scale: 0, ease: 'back.out(1.7)' });
-        gsap.to('h1', { duration: 1, opacity: 1, y: 0, delay: 0.5, ease: 'power2.out' });
-        gsap.to('p', { duration: 1, opacity: 1, y: 0, delay: 0.7, ease: 'power2.out' });
-        gsap.to('.social-icons', { duration: 1, opacity: 1, y: 0, delay: 0.9, ease: 'power2.out' });
-    </script>
-</body>
+        // Go to previous image
+        document.getElementById('prev-image').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + currentProductImages.length) % currentProductImages.length;
+            lightboxImage.src = currentProductImages[currentImageIndex];
+        });
 
+        // Go to next image
+        document.getElementById('next-image').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % currentProductImages.length;
+            lightboxImage.src = currentProductImages[currentImageIndex];
+        });
+
+        // Create product cards dynamically
+        function createProductCard(product) {
+            const productItem = document.createElement('div');
+            productItem.classList.add('product-item');
+
+            // Calculate discount percentage
+            const discountPercentage = Math.round(((product.price.original - product.price.discounted) / product.price.original) * 100);
+
+            // Create price with discount display
+            const priceHtml = `
+                <p class="product-price">
+                    <span class="original-price">$${product.price.original}</span>
+                    <span class="discounted-price">$${product.price.discounted}</span>
+                </p>
+            `;
+
+            // Check if product is a new arrival
+            const newArrivalBadge = product.newArrival ? `<span class="new-arrival-badge">New Arrival</span>` : '';
+
+            // Check if product has pre-order or buy now button
+            const actionButton = product.preOrder
+                ? `<a href="#" class="pre-order" data-product-id="${product.id}">Pre-Order</a>`
+                : `<a href="#" class="buy-now" data-product-id="${product.id}">Buy Now</a>`;
+
+            // Discount badge for products with a discount
+            const discountBadge = discountPercentage > 0 ? `<span class="discount-badge">${discountPercentage}% OFF</span>` : '';
+
+            productItem.innerHTML = `
+                ${newArrivalBadge}
+                ${discountBadge}
+                <img src="${product.images[0]}" alt="${product.title}" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">${product.title}</h3>
+                    ${priceHtml}
+                    <div class="product-buttons">
+                        <button class="view-more" data-product-id="${product.id}">View More</button>
+                        ${actionButton}
+                    </div>
+                </div>
+            `;
+
+            return productItem;
+        }
+
+        // Load products
+        function loadProducts() {
+            productData.forEach(product => {
+                const productCard = createProductCard(product);
+                productGrid.appendChild(productCard);
+            });
+        }
+
+        productGrid.addEventListener('click', (e) => {
+            if (e.target.classList.contains('view-more')) {
+                const productId = parseInt(e.target.getAttribute('data-product-id'));
+                const product = productData.find(p => p.id === productId);
+                if (product) {
+                    openLightbox(product.images, 0); // Open the lightbox starting with the first image
+                }
+            }
+            
+            // Buy Now / Pre-order functionality
+            if (e.target.classList.contains('buy-now') || e.target.classList.contains('pre-order')) {
+                e.preventDefault(); // Prevent default link behavior
+                const productId = parseInt(e.target.getAttribute('data-product-id'));
+                const product = productData.find(p => p.id === productId);
+                if (product) {
+                    const fullImageUrl = getFullImageUrl(product.images[0]);
+                    const message = `Hello, I would like to order this product:
+Product Name: ${product.title}
+Price: $${product.price.discounted}
+Image: ${fullImageUrl}`;
+                    const encodedMessage = encodeURIComponent(message);
+                    const whatsappURL = `https://wa.me/2348136375332?text=${encodedMessage}`;
+                    window.open(whatsappURL, '_blank');
+                }
+            }
+        });
+
+        loadProducts();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="./assets/js/appscripts.js" defer></script>
+</body>
 </html>
