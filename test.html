@@ -3,197 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/styles/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <title>Musmad Stitches - Official</title>
+    <title>ASOS Looks</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="collection-banner">
-        <span class="collection-banner-text">Native Class</span>
-        <span class="collection-banner-text">Nation wide Delivery</span>
-    </div>
-
-    <section class="collection-hero">
-        <div class="collection-hero-content">
-            <h1>Discover Your Style</h1>
-            <p>Explore our latest collection of trendsetting native fashion and tailored perfection.</p>
-            <a href="index.html" class="collection-cta-button">Home</a>
-        </div>
-    </section>
-
-    <h2 class="section-title">New Season Arrivals</h2>
-
-    <div class="product-grid" id="product-grid">
-        <!-- Product items will be dynamically inserted here -->
-    </div>
-
-    <div id="lightbox" class="lightbox">
-        <span class="close-lightbox">&times;</span>
-        <div class="lightbox-content">
-            <img id="lightbox-image" src="" alt="Product Image">
-            <div class="lightbox-nav">
-                <button id="prev-image"><i class="fas fa-chevron-left"></i></button>
-                <button id="next-image"><i class="fas fa-chevron-right"></i></button>
+    <div class="musmad-gallery">
+        <h1>Musmad stitches looks good on you.</h1>
+        <p>Tag @Musmad_stitches to be featured.</p>
+        
+        <div class="gallery-grid">
+            <!-- Repeat this block for each image -->
+            <div class="gallery-item">
+                <img src="./assets/img/musmad.png" alt="Image 1" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Musmad</div>
             </div>
+            <div class="gallery-item">
+                <img src="./assets/img/samad.png" alt="Image 2" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Samad</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Musmad</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Musmad</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Musmad</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Musmad</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Musmad</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Musmad</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Musmad</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Musmad</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Musmad</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Musmad</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Musmad</div>
+            </div>
+            <div class="gallery-item">
+                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
+                <div class="overlay">ig:@Musmad</div>
+            </div>
+            
         </div>
+        
+    </div>
+    
+    <!-- Lightbox structure -->
+    <div id="gallery-lightbox" class="gallery-lightbox" onclick="closeLightbox()">
+        <span class="gallery-lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="gallary-lightbox-content" id="gallery-lightbox-image">
     </div>
 
     <script>
-        function getFullImageUrl(relativePath) {
-            const baseUrl = window.location.origin; // Gets the base URL of your website
-            return `${baseUrl}/${relativePath.replace(/^\.\//, '')}`;
+    /* Lightbox JS */
+    function openLightbox(img) {
+        var gallery_lightbox = document.getElementById("gallery-lightbox");
+        var lightboxImg = document.getElementById("gallery-lightbox-image");
+        if (img && img.src) {
+            lightbox.style.display = "block";
+            lightboxImg.src = img.src;
         }
+    }
 
-        const productData = [
-            {
-                id: 1,
-                title: "Elegant Agbada",
-                images: ["./assets/img/native3.jpg", "./assets/img/native4.jpg", "./assets/img/native5.jpg"],
-                price: { original: 150, discounted: 120 },
-                newArrival: true,
-                preOrder: false
-            },
-            {
-                id: 2,
-                title: "Classic Native Dress",
-                images: ["./assets/img/agba1.jpg", "./assets/img/agbada2.jpg", "./assets/img/agbada3.jpg"],
-                price: { original: 200, discounted: 180 },
-                newArrival: false,
-                preOrder: true
-            },
-            {
-                id: 3,
-                title: "Royal Native Dress",
-                images: ["./assets/img/native_dress1.jpg", "./assets/img/native_dress2.jpg", "./assets/img/native_dress3.jpg"],
-                price: { original: 220, discounted: 190 },
-                newArrival: true,
-                preOrder: false
-            },
-            {
-                id: 4,
-                title: "Noble Traditional Wear",
-                images: ["./assets/img/native_dress1.jpg", "./assets/img/native_dress2.jpg", "./assets/img/native_dress3.jpg"],
-                price: { original: 250, discounted: 230 },
-                newArrival: false,
-                preOrder: true
-            },
-        ];
-
-        const productGrid = document.getElementById('product-grid');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImage = document.getElementById('lightbox-image');
-        const closeLightbox = document.querySelector('.close-lightbox');
-        let currentImageIndex = 0;
-        let currentProductImages = [];
-
-        // Function to display lightbox with selected image
-        function openLightbox(images, imageIndex) {
-            currentProductImages = images;
-            currentImageIndex = imageIndex;
-            lightboxImage.src = currentProductImages[currentImageIndex];
-            lightbox.style.display = 'flex';
-        }
-
-        // Close lightbox
-        closeLightbox.addEventListener('click', () => {
-            lightbox.style.display = 'none';
-        });
-
-        // Go to previous image
-        document.getElementById('prev-image').addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex - 1 + currentProductImages.length) % currentProductImages.length;
-            lightboxImage.src = currentProductImages[currentImageIndex];
-        });
-
-        // Go to next image
-        document.getElementById('next-image').addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex + 1) % currentProductImages.length;
-            lightboxImage.src = currentProductImages[currentImageIndex];
-        });
-
-        // Create product cards dynamically
-        function createProductCard(product) {
-            const productItem = document.createElement('div');
-            productItem.classList.add('product-item');
-
-            // Calculate discount percentage
-            const discountPercentage = Math.round(((product.price.original - product.price.discounted) / product.price.original) * 100);
-
-            // Create price with discount display
-            const priceHtml = `
-                <p class="product-price">
-                    <span class="original-price">$${product.price.original}</span>
-                    <span class="discounted-price">$${product.price.discounted}</span>
-                </p>
-            `;
-
-            // Check if product is a new arrival
-            const newArrivalBadge = product.newArrival ? `<span class="new-arrival-badge">New Arrival</span>` : '';
-
-            // Check if product has pre-order or buy now button
-            const actionButton = product.preOrder
-                ? `<a href="#" class="pre-order" data-product-id="${product.id}">Pre-Order</a>`
-                : `<a href="#" class="buy-now" data-product-id="${product.id}">Buy Now</a>`;
-
-            // Discount badge for products with a discount
-            const discountBadge = discountPercentage > 0 ? `<span class="discount-badge">${discountPercentage}% OFF</span>` : '';
-
-            productItem.innerHTML = `
-                ${newArrivalBadge}
-                ${discountBadge}
-                <img src="${product.images[0]}" alt="${product.title}" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">${product.title}</h3>
-                    ${priceHtml}
-                    <div class="product-buttons">
-                        <button class="view-more" data-product-id="${product.id}">View More</button>
-                        ${actionButton}
-                    </div>
-                </div>
-            `;
-
-            return productItem;
-        }
-
-        // Load products
-        function loadProducts() {
-            productData.forEach(product => {
-                const productCard = createProductCard(product);
-                productGrid.appendChild(productCard);
-            });
-        }
-
-        productGrid.addEventListener('click', (e) => {
-            if (e.target.classList.contains('view-more')) {
-                const productId = parseInt(e.target.getAttribute('data-product-id'));
-                const product = productData.find(p => p.id === productId);
-                if (product) {
-                    openLightbox(product.images, 0); // Open the lightbox starting with the first image
-                }
-            }
-            
-            // Buy Now / Pre-order functionality
-            if (e.target.classList.contains('buy-now') || e.target.classList.contains('pre-order')) {
-                e.preventDefault(); // Prevent default link behavior
-                const productId = parseInt(e.target.getAttribute('data-product-id'));
-                const product = productData.find(p => p.id === productId);
-                if (product) {
-                    const fullImageUrl = getFullImageUrl(product.images[0]);
-                    const message = `Hello, I would like to order this product:
-Product Name: ${product.title}
-Price: $${product.price.discounted}
-Image: ${fullImageUrl}`;
-                    const encodedMessage = encodeURIComponent(message);
-                    const whatsappURL = `https://wa.me/2348136375332?text=${encodedMessage}`;
-                    window.open(whatsappURL, '_blank');
-                }
-            }
-        });
-
-        loadProducts();
+    function closeLightbox() {
+        var gallery_lightbox = document.getElementById("gallery-lightbox");
+        lightbox.style.display = "none";
+    }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-    <script src="./assets/js/appscripts.js" defer></script>
+
 </body>
 </html>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.musmad-gallery {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Dynamic grid layout for full responsiveness */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Dynamically fill space */
+    gap: 15px;
+    padding: 0 20px;
+}
+
+/* For larger screens (1024px and up), display 5 images per row */
+@media (min-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* For tablet screens (max-width: 768px), display 2 images per row */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 images per row */
+    }
+}
+
+/* Individual gallery items */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+    min-width: 150px;
+    width: 100%; /* Ensure the image scales dynamically */
+    cursor: pointer; /* Add a cursor for clickability */
+}
+
+.gallery-item:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* First image displayed by default */
+.gallery-item .first-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+/* The overlay that holds the Instagram handle */
+.gallery-item .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.6rem;
+    z-index: 2;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+/* Slide the overlay up on hover for desktop */
+.gallery-item:hover .overlay {
+    transform: translateY(0);
+}
+
+/* For mobile, ensure the overlay remains visible and fixed */
+@media (max-width: 768px) {
+    .gallery-item .overlay {
+        transform: translateY(0);
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+/* Lightbox styles */
+.lightbox {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 999;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    color: #fff;
+    font-size: 35px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+</style>

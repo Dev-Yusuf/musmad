@@ -38,113 +38,169 @@
             </div>
         </div>
     </div>
-<script>
 
-    const productData = [
-        {
-            id: 1,
-            title: "Elegant Agbada",
-            images: ["./assets/img/native3.jpg", "./assets/img/native4.jpg", "./assets/img/native5.jpg"]
-        },
-        {
-            id: 2,
-            title: "Classic Native Dress",
-            images: ["./assets/img/agba1.jpg", "./assets/img/agbada2.jpg", "./assets/img/agbada3.jpg"]
-        },
-        {
-            id: 3,
-            title: "Royal Native Dress",
-            images: ["./assets/img/native_dress1.jpg", "./assets/img/native_dress2.jpg", "./assets/img/native_dress3.jpg"]
-        },
-        {
-            id: 4,
-            title: "Noble Traditional Wear",
-            images: ["./assets/img/native_dress1.jpg", "./assets/img/native_dress2.jpg", "./assets/img/native_dress3.jpg"]
-        },
-    ];
+    <script>
+        function getFullImageUrl(relativePath) {
+            const baseUrl = window.location.origin; // Gets the base URL of your website
+            return `${baseUrl}/${relativePath.replace(/^\.\//, '')}`;
+        }
 
-    const productGrid = document.getElementById('product-grid');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightbox-image');
-    const closeLightbox = document.querySelector('.close-lightbox');
-    const prevImage = document.getElementById('prev-image');
-    const nextImage = document.getElementById('next-image');
+        const productData = [
+            {
+                id: 1,
+                title: "Elegant Agbada",
+                images: ["./assets/img/native3.jpg", "./assets/img/native4.jpg", "./assets/img/native5.jpg"],
+                price: { original: 150, discounted: 120 },
+                newArrival: true,
+                preOrder: false
+            },
+            {
+                id: 2,
+                title: "Classic Native Dress",
+                images: ["./assets/img/agba1.jpg", "./assets/img/agbada2.jpg", "./assets/img/agbada3.jpg"],
+                price: { original: 200, discounted: 180 },
+                newArrival: false,
+                preOrder: true
+            },
+            {
+                id: 3,
+                title: "Royal Native Dress",
+                images: ["./assets/img/native4.jpg", "./assets/img/native6.jpg", "./assets/img/native3.jpg"],
+                price: { original: 220, discounted: 190 },
+                newArrival: true,
+                preOrder: false
+            },
+            {
+                id: 4,
+                title: "Noble Traditional Wear",
+                images: ["./assets/img/native6.jpg", "./assets/img/native4.jpg", "./assets/img/native_dress2.jpg"],
+                price: { original: 250, discounted: 230 },
+                newArrival: false,
+                preOrder: true
+            },
+        ];
 
-    let currentProductId;
-    let currentImageIndex;
+        const productGrid = document.getElementById('product-grid');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const closeLightbox = document.querySelector('.close-lightbox');
+        let currentImageIndex = 0;
+        let currentProductImages = [];
 
-    function createProductCard(product) {
-        const productItem = document.createElement('div');
-        productItem.classList.add('product-item');
-        productItem.innerHTML = `
-            <img src="${product.images[0]}" alt="${product.title}" class="product-image">
-            <div class="product-info">
-                <h3 class="product-title">${product.title}</h3>
-                <div class="product-buttons">
-                    <button class="view-more" data-product-id="${product.id}">View More</button>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-        `;
-        return productItem;
-    }
-
-    function loadProducts() {
-        productData.forEach(product => {
-            const productCard = createProductCard(product);
-            productGrid.appendChild(productCard);
-        });
-    }
-
-    function openLightbox(productId, imageIndex = 0) {
-        const product = productData.find(p => p.id === productId);
-        if (product) {
-            currentProductId = productId;
+        // Function to display lightbox with selected image
+        function openLightbox(images, imageIndex) {
+            currentProductImages = images;
             currentImageIndex = imageIndex;
-            lightboxImage.src = product.images[currentImageIndex];
-            lightbox.style.display = 'block';
+            lightboxImage.src = currentProductImages[currentImageIndex];
+            lightbox.style.display = 'flex';
         }
-    }
 
-    function closeLightboxFn() {
-        lightbox.style.display = 'none';
-    }
+        // Close lightbox
+        closeLightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
 
-    function showNextImage() {
-        const product = productData.find(p => p.id === currentProductId);
-        currentImageIndex = (currentImageIndex + 1) % product.images.length;
-        lightboxImage.src = product.images[currentImageIndex];
-    }
+        // Go to previous image
+        document.getElementById('prev-image').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + currentProductImages.length) % currentProductImages.length;
+            lightboxImage.src = currentProductImages[currentImageIndex];
+        });
 
-    function showPrevImage() {
-        const product = productData.find(p => p.id === currentProductId);
-        currentImageIndex = (currentImageIndex - 1 + product.images.length) % product.images.length;
-        lightboxImage.src = product.images[currentImageIndex];
-    }
+        // Go to next image
+        document.getElementById('next-image').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % currentProductImages.length;
+            lightboxImage.src = currentProductImages[currentImageIndex];
+        });
 
-    productGrid.addEventListener('click', (e) => {
-        if (e.target.classList.contains('view-more')) {
-            const productId = parseInt(e.target.getAttribute('data-product-id'));
-            openLightbox(productId);
-        } else if (e.target.classList.contains('buy-now')) {
-            alert('This feature is coming soon!'); // Placeholder action
+        // Create product cards dynamically
+        function createProductCard(product) {
+            const productItem = document.createElement('div');
+            productItem.classList.add('product-item');
+
+            // Calculate discount percentage
+            const discountPercentage = Math.round(((product.price.original - product.price.discounted) / product.price.original) * 100);
+
+            // Create price with discount display
+            const priceHtml = `
+                <p class="product-price">
+                    <span class="original-price">₦${product.price.original}</span>
+                    <span class="discounted-price"> ₦${product.price.discounted}</span>
+                </p>
+            `;
+
+            // Check if product is a new arrival
+            const newArrivalBadge = product.newArrival ? `<span class="new-arrival-badge">New Arrival</span>` : '';
+
+            // Check if product has pre-order or buy now button
+            const actionButton = product.preOrder
+                ? `<a href="#" class="pre-order" data-product-id="${product.id}">Pre-Order</a>`
+                : `<a href="#" class="buy-now" data-product-id="${product.id}">Buy Now</a>`;
+
+            // Discount badge for products with a discount
+            const discountBadge = discountPercentage > 0 ? `<span class="discount-badge">${discountPercentage}% OFF</span>` : '';
+
+            productItem.innerHTML = `
+                ${newArrivalBadge}
+                ${discountBadge}
+                <img src="${product.images[0]}" alt="${product.title}" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">${product.title}</h3>
+                    ${priceHtml}
+                    <div class="product-buttons">
+                        <button class="view-more" data-product-id="${product.id}">View More</button>
+                        ${actionButton}
+                    </div>
+                </div>
+            `;
+
+            return productItem;
         }
-    });
 
-    closeLightbox.addEventListener('click', closeLightboxFn);
-    nextImage.addEventListener('click', showNextImage);
-    prevImage.addEventListener('click', showPrevImage);
-
-    window.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            closeLightboxFn();
+        // Load products
+        function loadProducts() {
+            productData.forEach(product => {
+                const productCard = createProductCard(product);
+                productGrid.appendChild(productCard);
+            });
         }
-    });
 
-    loadProducts();
-</script>
-    <!-- Include your external JS file here, right before closing the body tag -->
+        productGrid.addEventListener('click', (e) => {
+            if (e.target.classList.contains('view-more')) {
+                const productId = parseInt(e.target.getAttribute('data-product-id'));
+                const product = productData.find(p => p.id === productId);
+                if (product) {
+                    openLightbox(product.images, 0); // Open the lightbox starting with the first image
+                }
+            }
+            
+            // Buy Now / Pre-order functionality
+            if (e.target.classList.contains('buy-now') || e.target.classList.contains('pre-order')) {
+                e.preventDefault(); // Prevent default link behavior
+                const productId = parseInt(e.target.getAttribute('data-product-id'));
+                const product = productData.find(p => p.id === productId);
+                if (product) {
+                    const fullImageUrl = getFullImageUrl(product.images[0]);
+                    const message = `Hello, I would like to order this product:
+                    Product Name: ${product.title}
+                    Price: ₦${product.price.discounted}
+                    Image: ${fullImageUrl}`;
+
+                    const encodedMessage = encodeURIComponent(message);
+                    const whatsappURL = `https://wa.me/2348136375332?text=${encodedMessage}`;
+                    
+                    // Debugging logs
+                    console.log("Message:", message);
+                    console.log("Encoded Message:", encodedMessage);
+                    console.log("WhatsApp URL:", whatsappURL);
+                    
+                    window.open(whatsappURL, '_blank');
+                }
+            }
+        });
+
+        loadProducts();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
     <script src="./assets/js/appscripts.js" defer></script>
-
 </body>
 </html>

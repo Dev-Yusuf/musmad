@@ -585,7 +585,12 @@ nav.scrolled .hero-cta-button:hover {
       font-size: var(--font-size-md);
   }
 }
-  
+
+@media (max-width: 768px) {
+  .how-we-help-section {
+      padding: var(--space-xxl) var(--space-sm);
+  }
+}
 
 .collection-section {
     display: flex;
@@ -773,6 +778,20 @@ nav.scrolled .hero-cta-button:hover {
   margin: 0 0 1rem 0;
 }
 
+.product-price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.original-price {
+  text-decoration: line-through;
+  color: #888;
+}
+.discounted-price {
+  font-weight: bold;
+  color: #333;
+}
+
 /* Button container */
 .product-buttons {
   display: flex;
@@ -797,19 +816,19 @@ nav.scrolled .hero-cta-button:hover {
 
 /* Buy Now button */
 .buy-now {
-  background-color: var(--accent-color);
+  background-color: var(--color-primary);
   color: white;
 }
 
 /* Pre-order button */
 .pre-order {
-  background-color: #f0ad4e;
-  color: white;
+  background-color: var(--accent-color);
+  color: var(--color-primary);
 }
 
 .view-more:hover, .buy-now:hover, .pre-order:hover {
-  background-color: var(--color-primary);
-  color: white;
+  background-color: var(--accent-color);
+  color: var(--color-primary);
 }
 
 /* Lightbox styles */
@@ -907,6 +926,98 @@ nav.scrolled .hero-cta-button:hover {
 .initial-price {
   text-decoration: line-through;
   color: red;
+}
+
+/*gallery page style*/
+.musmad-gallery {
+  margin-top: 40px;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* Dynamic grid layout for full responsiveness */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Dynamically fill space */
+  gap: 15px;
+  padding: 0 20px;
+}
+
+/* For larger screens (1024px and up), display 5 images per row */
+@media (min-width: 1024px) {
+  .gallery-grid {
+      grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* For tablet screens (max-width: 768px), display 2 images per row */
+@media (max-width: 768px) {
+  .gallery-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 images per row */
+  }
+}
+
+/* Individual gallery items */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease;
+  min-width: 150px;
+  width: 100%; /* Ensure the image scales dynamically */
+  cursor: pointer; /* Add a cursor for clickability */
+}
+
+.gallery-item:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* First image displayed by default */
+.gallery-item .first-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+/* The overlay that holds the Instagram handle */
+.gallery-item .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.6rem;
+  z-index: 2;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+/* Slide the overlay up on hover for desktop */
+.gallery-item:hover .overlay {
+  transform: translateY(0);
+}
+
+/* For mobile, ensure the overlay remains visible and fixed */
+@media (max-width: 768px) {
+  .gallery-item .overlay {
+      transform: translateY(0);
+      position: absolute;
+      bottom: 0;
+  }
 }
 
 
