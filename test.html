@@ -4,240 +4,287 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASOS Looks</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .testimonials-section {
+            background: linear-gradient(145deg, #f0f1f6, #fff);
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .testimonial-carousel {
+            display: flex;
+            position: relative;
+            max-width: 1000px;
+            width: 100%;
+            overflow: hidden;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .testimonial-card {
+            display: none;
+            flex-direction: column;
+            background-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+        }
+
+        .testimonial-card.active {
+            display: flex;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .testimonial-text {
+            padding: 30px;
+            order: 1;
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .testimonial-author {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .author-title {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .testimonial-image {
+            order: 2;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .carousel-controls .prev-btn, .carousel-controls .next-btn {
+            cursor: pointer;
+            font-size: 2rem;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .carousel-controls .prev-btn:hover, .carousel-controls .next-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+
+        .testimonial-indicators {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .testimonial-indicators .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .testimonial-indicators .indicator.active {
+            background-color: #555;
+            transform: scale(1.2);
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-section {
+                padding: 100px 20px;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+
+            .section-description {
+                font-size: 1.2rem;
+            }
+
+            .testimonial-card {
+                flex-direction: row;
+                height: 500px;
+            }
+
+            .testimonial-text {
+                flex: 1;
+                order: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .testimonial-image {
+                flex: 1;
+                order: 2;
+                height: 100%;
+            }
+
+            .testimonial-quote {
+                font-size: 1.2rem;
+            }
+
+            .testimonial-author {
+                font-size: 1.1rem;
+            }
+
+            .carousel-controls .prev-btn, .carousel-controls .next-btn {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="musmad-gallery">
-        <h1>Musmad stitches looks good on you.</h1>
-        <p>Tag @Musmad_stitches to be featured.</p>
-        
-        <div class="gallery-grid">
-            <!-- Repeat this block for each image -->
-            <div class="gallery-item">
-                <img src="./assets/img/musmad.png" alt="Image 1" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Musmad</div>
-            </div>
-            <div class="gallery-item">
-                <img src="./assets/img/samad.png" alt="Image 2" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Samad</div>
-            </div>
-            <div class="gallery-item">
-                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Musmad</div>
-            </div>
-            <div class="gallery-item">
-                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Musmad</div>
-            </div>
-            <div class="gallery-item">
-                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Musmad</div>
-            </div>
-            <div class="gallery-item">
-                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Musmad</div>
-            </div>
-            <div class="gallery-item">
-                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Musmad</div>
-            </div>
-            <div class="gallery-item">
-                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Musmad</div>
-            </div>
-            <div class="gallery-item">
-                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Musmad</div>
-            </div>
-            <div class="gallery-item">
-                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Musmad</div>
-            </div>
-            <div class="gallery-item">
-                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Musmad</div>
-            </div>
-            <div class="gallery-item">
-                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Musmad</div>
-            </div>
-            <div class="gallery-item">
-                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Musmad</div>
-            </div>
-            <div class="gallery-item">
-                <img src="./assets/img/musmad.png" alt="Image 3" class="first-image" onclick="openLightbox(this)">
-                <div class="overlay">ig:@Musmad</div>
-            </div>
-            
+    <section class="testimonials-section">
+        <div class="section-header">
+            <h2 class="section-title">Voice of Satisfaction</h2>
+            <p class="section-description">Discover why fashion enthusiasts trust ASOS Looks for their style needs. </p>
         </div>
-        
-    </div>
-    
-    <!-- Lightbox structure -->
-    <div id="gallery-lightbox" class="gallery-lightbox" onclick="closeLightbox()">
-        <span class="gallery-lightbox-close" onclick="closeLightbox()">&times;</span>
-        <img class="gallary-lightbox-content" id="gallery-lightbox-image">
-    </div>
+
+        <div class="testimonial-carousel">
+            <div class="testimonial-card active">
+                <div class="testimonial-text">
+                    <p class="testimonial-quote">"Their craftsmanship is unparalleled! I love my custom suit."</p>
+                    <h4 class="testimonial-author">James Miller</h4>
+                    <p class="author-title">CEO, Businessman</p>
+                </div>
+                <div class="testimonial-image">
+                    <img src="./assets/img/musmad.png" alt="James Miller">
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    <p class="testimonial-quote">"Absolutely stunning designs. Attention to detail is key!"</p>
+                    <h4 class="testimonial-author">Anna Taylor</h4>
+                    <p class="author-title">Fashion Influencer</p>
+                </div>
+                <div class="testimonial-image">
+                    <img src="./assets/img/samad.png" alt="Anna Taylor">
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    <p class="testimonial-quote">"A premium experience! The team exceeded my expectations."</p>
+                    <h4 class="testimonial-author">David Liu</h4>
+                    <p class="author-title">Architect</p>
+                </div>
+                <div class="testimonial-image">
+                    <img src="/api/placeholder/400/600" alt="David Liu">
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <span class="prev-btn">&#10094;</span>
+            <span class="next-btn">&#10095;</span>
+        </div>
+
+        <div class="testimonial-indicators">
+            <span class="indicator active"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+        </div>
+    </section>
 
     <script>
-    /* Lightbox JS */
-    function openLightbox(img) {
-        var gallery_lightbox = document.getElementById("gallery-lightbox");
-        var lightboxImg = document.getElementById("gallery-lightbox-image");
-        if (img && img.src) {
-            lightbox.style.display = "block";
-            lightboxImg.src = img.src;
+        // JavaScript remains unchanged
+        const testimonials = document.querySelectorAll('.testimonial-card');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const indicators = document.querySelectorAll('.indicator');
+        let currentIndex = 0;
+        
+        function updateTestimonial(index) {
+          testimonials.forEach((testimonial, i) => {
+            testimonial.classList.remove('active');
+            indicators[i].classList.remove('active');
+          });
+          testimonials[index].classList.add('active');
+          indicators[index].classList.add('active');
         }
-    }
-
-    function closeLightbox() {
-        var gallery_lightbox = document.getElementById("gallery-lightbox");
-        lightbox.style.display = "none";
-    }
+        
+        prevBtn.addEventListener('click', () => {
+          currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+          updateTestimonial(currentIndex);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+          currentIndex = (currentIndex + 1) % testimonials.length;
+          updateTestimonial(currentIndex);
+        });
+        
+        indicators.forEach((indicator, i) => {
+          indicator.addEventListener('click', () => {
+            updateTestimonial(i);
+            currentIndex = i;
+          });
+        });
+        
+        // Initialize first testimonial
+        updateTestimonial(currentIndex);
     </script>
-
 </body>
 </html>
-
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
-}
-
-.musmad-gallery {
-    margin-top: 40px;
-    text-align: center;
-    padding: 20px;
-}
-
-h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-}
-
-/* Dynamic grid layout for full responsiveness */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Dynamically fill space */
-    gap: 15px;
-    padding: 0 20px;
-}
-
-/* For larger screens (1024px and up), display 5 images per row */
-@media (min-width: 1024px) {
-    .gallery-grid {
-        grid-template-columns: repeat(5, 1fr);
-    }
-}
-
-/* For tablet screens (max-width: 768px), display 2 images per row */
-@media (max-width: 768px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 images per row */
-    }
-}
-
-/* Individual gallery items */
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    transition: box-shadow 0.3s ease;
-    min-width: 150px;
-    width: 100%; /* Ensure the image scales dynamically */
-    cursor: pointer; /* Add a cursor for clickability */
-}
-
-.gallery-item:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* First image displayed by default */
-.gallery-item .first-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: opacity 0.3s ease;
-}
-
-/* The overlay that holds the Instagram handle */
-.gallery-item .overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    padding: 10px;
-    text-align: center;
-    font-size: 0.6rem;
-    z-index: 2;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
-
-/* Slide the overlay up on hover for desktop */
-.gallery-item:hover .overlay {
-    transform: translateY(0);
-}
-
-/* For mobile, ensure the overlay remains visible and fixed */
-@media (max-width: 768px) {
-    .gallery-item .overlay {
-        transform: translateY(0);
-        position: absolute;
-        bottom: 0;
-    }
-}
-
-/* Lightbox styles */
-.lightbox {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 999;
-    padding-top: 50px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
-}
-
-.lightbox-content {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 700px;
-}
-
-.lightbox-close {
-    position: absolute;
-    top: 10px;
-    right: 25px;
-    color: #fff;
-    font-size: 35px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.lightbox-close:hover,
-.lightbox-close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-</style>
