@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/musmad_logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/img/musmad_logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/img/musmad_logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>Musmad Stitches - Official</title>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "https://musmadstitches.com",
+            "logo": "https://musmadstitches.com/assets/img/musmad_logo.png"
+        }
+    </script>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+    <div class="content">
+        <div class="logo">
+            <img src="./assets/img/musmad_logo.png" alt="Musmad Logo">
+        </div>
+        <h1>COMING SOON...</h1>
+        <p>Thank you for visiting Musmadstitches, Our technical team are seriously
+            working hard to serve you better and increase your online shopping experience with us.
+            Meanwhile you can reach out to us on:</p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/musmad_stitches" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="http://wa.me/2348136375332" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
+    <div class="copyright">Musmadstitches 2024. All rights reserved.</div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Particles.js configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#a3b18a' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: false, anim: { enable: false } },
+                size: { value: 3, random: true, anim: { enable: false } },
+                line_linked: { enable: true, distance: 150, color: '#a3b18a', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        // GSAP animations
+        gsap.from('.logo', { duration: 1, scale: 0, ease: 'back.out(1.7)' });
+        gsap.to('h1', { duration: 1, opacity: 1, y: 0, delay: 0.5, ease: 'power2.out' });
+        gsap.to('p', { duration: 1, opacity: 1, y: 0, delay: 0.7, ease: 'power2.out' });
+        gsap.to('.social-icons', { duration: 1, opacity: 1, y: 0, delay: 0.9, ease: 'power2.out' });
+    </script>
+</body>
+
+<style>
+:root {
+  --color-primary: #344e41;
+  --color-secondary: #dad7cd;
+  --accent-color: #a3b18a;
+  --text-color: #ffffff;
+  --background-color: #0a0a0a;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.logo img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-family: 'GFS Didot', serif;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.social-icons a {
+  color: var(--accent-color);
+  font-size: 1.9rem;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--color-secondary);
+  transform: scale(1.2);
+}
+
+.copyright {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+
+@media (max-width: 768px) {
+  h1 {
+      font-size: 2rem;
+  }
+
+  p {
+      font-size: 1rem;
+  }
+
+  .logo img {
+      width: 80px;
+  }
+
+  .social-icons a {
+      font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+      font-size: 1.5rem;
+  }
+
+  p {
+      font-size: 0.9rem;
+  }
+
+  .logo img {
+      width: 60px;
+  }
+
+  .social-icons a {
+      font-size: 1.5rem;
+  }
+}
+
+</style>
+</html>
+

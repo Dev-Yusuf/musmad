@@ -929,6 +929,7 @@ nav.scrolled .hero-cta-button:hover {
 }
 
 /*gallery page style*/
+/*gallery page style*/
 .musmad-gallery {
   margin-top: 40px;
   text-align: center;
@@ -948,7 +949,7 @@ p {
 /* Dynamic grid layout for full responsiveness */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Dynamically fill space */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Reduced minimum width */
   gap: 15px;
   padding: 0 20px;
 }
@@ -956,14 +957,14 @@ p {
 /* For larger screens (1024px and up), display 5 images per row */
 @media (min-width: 1024px) {
   .gallery-grid {
-      grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr); /* Changed back to 5 columns */
   }
 }
 
 /* For tablet screens (max-width: 768px), display 2 images per row */
 @media (max-width: 768px) {
   .gallery-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2 images per row */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -973,9 +974,10 @@ p {
   overflow: hidden;
   border-radius: 10px;
   transition: box-shadow 0.3s ease;
-  min-width: 150px;
-  width: 100%; /* Ensure the image scales dynamically */
-  cursor: pointer; /* Add a cursor for clickability */
+  min-width: 180px; /* Reduced minimum width */
+  width: 100%;
+  cursor: pointer;
+  aspect-ratio: 3 / 4; /* Changed to a taller rectangular shape */
 }
 
 .gallery-item:hover {
@@ -985,7 +987,8 @@ p {
 /* First image displayed by default */
 .gallery-item .first-image {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
   transition: opacity 0.3s ease;
 }
@@ -998,9 +1001,9 @@ p {
   width: 100%;
   background: rgba(0, 0, 0, 0.6);
   color: white;
-  padding: 10px;
+  padding: 8px;
   text-align: center;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   z-index: 2;
   transform: translateY(100%);
   transition: transform 0.3s ease;
@@ -1014,9 +1017,9 @@ p {
 /* For mobile, ensure the overlay remains visible and fixed */
 @media (max-width: 768px) {
   .gallery-item .overlay {
-      transform: translateY(0);
-      position: absolute;
-      bottom: 0;
+    transform: translateY(0);
+    position: absolute;
+    bottom: 0;
   }
 }
 
