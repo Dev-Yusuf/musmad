@@ -198,3 +198,52 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize first testimonial
     updateTestimonial(currentIndex);
+
+    (function() {
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        const searchInput = document.getElementById('search-input');
+        const faqList = document.getElementById('faq-list');
+        const notFound = document.querySelector('.not-found');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                question.classList.toggle('active');
+                const answer = question.nextElementSibling;
+                answer.classList.toggle('active');
+            });
+        });
+
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            let found = false;
+
+            faqList.querySelectorAll('.faq-item').forEach(item => {
+                const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    found = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            notFound.style.display = 'block';
+        });
+    })();
+
+    function showCategory(category) {
+        document.querySelectorAll('.category-button').forEach(button => {
+            button.classList.remove('active');
+        });
+        document.querySelectorAll('.category-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        document.getElementById(category).classList.add('active');
+        document.getElementById(category + '-button').classList.add('active');
+    }
+
+    window.onload = function() {
+        showCategory('natives');
+    };
