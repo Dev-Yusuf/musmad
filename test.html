@@ -1,303 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing Plans</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
         body {
-            min-height: 100vh;
-            background: linear-gradient(to bottom right, #f9fafb, #f3f4f6);
+            background: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .menu-collections {
             padding: 3rem 1rem;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
         }
 
-        .price-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .text-center {
+        .menu-collection-header {
             text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 1rem;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            color: #111827;
-            margin-bottom: 2rem;
+        .menu-collection-subtitle {
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
         }
 
-        .delivery-notice {
-            font-size: 1rem;
-            color: #4b5563;
-            background-color: #f3f4f6;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
+        .menu-collection-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #1a1a1a;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .menu-collection-description {
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
+            color: #6c757d;
+            line-height: 1.6;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            padding: 0 1rem;
         }
 
-        .category-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .category-button {
-            background-color: #e5e7eb;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-size: 1rem;
-            color: #111827;
-            transition: background-color 0.3s;
-        }
-
-        .category-button.active {
-            background-color: black;
-            color: white;
-        }
-
-        .category-button:hover {
-            background-color: #d1d5db;
-        }
-
-        .pricing-grid {
+        .menu-cards-container {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             max-width: 1400px;
             margin: 0 auto;
+            padding: 1rem;
         }
 
-        .pricing-card {
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .menu-card {
+            position: relative;
             overflow: hidden;
-            transition: box-shadow 0.3s;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
             height: 100%;
         }
 
-        .pricing-card:hover {
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        .menu-card-image-wrapper {
+            position: relative;
+            padding-top: 130%;
+            overflow: hidden;
         }
 
-        .card-content {
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
+        @media (min-width: 768px) {
+            .menu-card-image-wrapper {
+                padding-top: 130%;
+            }
+
+            .menu-card:hover {
+                transform: translateY(-15px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            }
+
+            .menu-card:hover img {
+                transform: scale(1.05);
+            }
+
+            .menu-card:hover .menu-card-content {
+                transform: translateY(0);
+            }
+
+            .menu-card-content {
+                transform: translateY(45%);
+            }
+        }
+
+        .menu-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
         }
 
-        .tier-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 0.5rem;
+        .menu-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(
+                to top,
+                rgba(255,255,255,0.95) 0%,
+                rgba(255,255,255,0.95) 70%,
+                rgba(255,255,255,0) 100%
+            );
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .price {
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: #111827;
-            margin: 1rem 0 2rem;
+        .menu-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
         }
 
-        .features-list {
-            list-style: none;
-            margin-bottom: 2rem;
-            flex-grow: 1;
+        .menu-card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: #1a1a1a;
         }
 
-        .feature-item {
-            display: flex;
+        .menu-explore-btn {
+            display: inline-flex;
             align-items: center;
-            color: #4b5563;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
+            padding: 0.8rem 1.5rem;
+            background: none;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            gap: 0.5rem;
         }
 
-        .feature-item::before {
-            content: "✓";
-            color: #10b981;
-            margin-right: 0.75rem;
-            font-weight: bold;
+        .menu-explore-btn i {
+            transition: transform 0.3s ease;
         }
 
-        .category-section {
-            display: none;
+        .menu-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.9);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1a1a1a;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 1;
+            display: block;
         }
 
-        .category-section.active {
-            display: grid;
-        }
+        @media (max-width: 480px) {
+            .menu-collections {
+                padding: 2rem 0.5rem;
+            }
 
-        @media (min-width: 640px) {
-            .pricing-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .menu-collection-header {
+                margin-bottom: 2rem;
+            }
+
+            .menu-cards-container {
+                padding: 0.5rem;
                 gap: 1.5rem;
             }
-        }
 
-        @media (min-width: 1024px) {
-            .pricing-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 2rem;
+            .menu-card-image-wrapper {
+                padding-top: 150%;
             }
-            
-            .container {
-                padding: 0 4rem;
+
+            .menu-badge {
+                display: block;
             }
         }
     </style>
-    <script>
-        function showCategory(category) {
-            document.querySelectorAll('.category-button').forEach(button => {
-                button.classList.remove('active');
-            });
-            document.querySelectorAll('.category-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById(category).classList.add('active');
-            document.getElementById(category + '-button').classList.add('active');
-        }
-
-        window.onload = function() {
-            showCategory('natives');
-        };
-    </script>
 </head>
 <body>
-    <div class="container">
-        <div class="text-center">
-            <h1>Pricing Plans</h1>
-            <div class="delivery-notice">
-                📦 All orders are ready within 2 weeks after payment and agreement
-            </div>
-            <div class="category-buttons">
-                <button id="natives-button" class="category-button" onclick="showCategory('natives')">Natives</button>
-                <button id="agbada-button" class="category-button" onclick="showCategory('agbada')">Agbada</button>
-            </div>
+    <section class="menu-collections">
+        <div class="menu-collection-header">
+            <p class="menu-collection-subtitle">Exclusive Collection</p>
+            <h2 class="menu-collection-title">Discover Our Heritage</h2>
+            <p class="menu-collection-description">
+                Explore our carefully curated collection of premium wear that combines traditional craftsmanship with contemporary design.
+            </p>
         </div>
 
-        <div id="natives" class="category-section pricing-grid">
-            <div class="pricing-card">
-                <div class="card-content">
-                    <h3 class="tier-name">Standard</h3>
-                    <div class="price">₦35,888</div>
-                    <ul class="features-list">
-                        <li class="feature-item">Quality fabric</li>
-                        <li class="feature-item">Standard fit</li>
-                        <li class="feature-item">Basic customization</li>
-                        <li class="feature-item">Simple neck embroidery</li>
-                        <li class="feature-item">2 weeks delivery</li>
-                    </ul>
+        <div class="menu-cards-container">
+            <div class="menu-card">
+                <span class="menu-badge">Premium</span>
+                <div class="menu-card-image-wrapper">
+                    <img src="./assets/img/native6.jpg" alt="Native Wear Collection">
+                </div>
+                <div class="menu-card-content">
+                    <h3 class="menu-card-title">Native Wear</h3>
+                    <a href="#" class="menu-explore-btn">
+                        Explore Collection
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
-            <div class="pricing-card">
-                <div class="card-content">
-                    <h3 class="tier-name">Classic</h3>
-                    <div class="price">₦45,888</div>
-                    <ul class="features-list">
-                        <li class="feature-item">Premium fabric</li>
-                        <li class="feature-item">Tailored fit</li>
-                        <li class="feature-item">Multiple styles</li>
-                        <li class="feature-item">Detailed neck & sleeve embroidery</li>
-                        <li class="feature-item">2 weeks delivery</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="pricing-card">
-                <div class="card-content">
-                    <h3 class="tier-name">Premium</h3>
-                    <div class="price">₦65,750</div>
-                    <ul class="features-list">
-                        <li class="feature-item">Luxury fabric</li>
-                        <li class="feature-item">Perfect fit</li>
-                        <li class="feature-item">Full customization</li>
-                        <li class="feature-item">Custom embroidery patterns</li>
-                        <li class="feature-item">2 weeks delivery</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="pricing-card">
-                <div class="card-content">
-                    <h3 class="tier-name">Luxury</h3>
-                    <div class="price">₦92,750</div>
-                    <ul class="features-list">
-                        <li class="feature-item">Exclusive fabric</li>
-                        <li class="feature-item">Bespoke fit</li>
-                        <li class="feature-item">Priority service</li>
-                        <li class="feature-item">Premium full embroidery design</li>
-                        <li class="feature-item">2 weeks delivery</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
 
-        <div id="agbada" class="category-section pricing-grid">
-            <div class="pricing-card">
-                <div class="card-content">
-                    <h3 class="tier-name">Standard</h3>
-                    <div class="price">₦75,888</div>
-                    <ul class="features-list">
-                        <li class="feature-item">Quality fabric</li>
-                        <li class="feature-item">Standard design</li>
-                        <li class="feature-item">Basic embroidery</li>
-                        <li class="feature-item">2 weeks delivery</li>
-                    </ul>
+            <div class="menu-card">
+                <span class="menu-badge">Bestseller</span>
+                <div class="menu-card-image-wrapper">
+                    <img src="./assets/img/native6.jpg" alt="Traditional Wear Collection">
+                </div>
+                <div class="menu-card-content">
+                    <h3 class="menu-card-title">Traditional Wear</h3>
+                    <a href="#" class="menu-explore-btn">
+                        Explore Collection
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
-            <div class="pricing-card">
-                <div class="card-content">
-                    <h3 class="tier-name">Classic</h3>
-                    <div class="price">₦80,888</div>
-                    <ul class="features-list">
-                        <li class="feature-item">Premium fabric</li>
-                        <li class="feature-item">Custom design</li>
-                        <li class="feature-item">Detailed embroidery</li>
-                        <li class="feature-item">2 weeks delivery</li>
-                    </ul>
+
+            <div class="menu-card">
+                <span class="menu-badge">Coming Soon...</span>
+                <div class="menu-card-image-wrapper">
+                    <img src="./assets/img/native6.jpg" alt="Glims by Musmad Collection">
                 </div>
-            </div>
-            <div class="pricing-card">
-                <div class="card-content">
-                    <h3 class="tier-name">Premium</h3>
-                    <div class="price">₦102,550</div>
-                    <ul class="features-list">
-                        <li class="feature-item">Luxury fabric</li>
-                        <li class="feature-item">Exclusive design</li>
-                        <li class="feature-item">Premium embroidery</li>
-                        <li class="feature-item">2 weeks delivery</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="pricing-card">
-                <div class="card-content">
-                    <h3 class="tier-name">Luxury</h3>
-                    <div class="price">₦156,550</div>
-                    <ul class="features-list">
-                        <li class="feature-item">Exclusive fabric</li>
-                        <li class="feature-item">Bespoke design</li>
-                        <li class="feature-item">Grand embroidery</li>
-                        <li class="feature-item">2 weeks delivery</li>
-                    </ul>
+                <div class="menu-card-content">
+                    <h3 class="menu-card-title">Glims by Musmad</h3>
+                    <a href="#" class="menu-explore-btn">
+                        Explore Collection
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </body>
 </html>
